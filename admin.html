@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Portfolio</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Admin Sidebar -->
+    <div class="admin-wrapper">
+      <aside class="admin-sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <span>KJ</span>
+          </div>
+          <h3>Admin Panel</h3>
+          <button class="sidebar-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a href="#" class="nav-item active" data-section="dashboard">
+            <i class="fas fa-chart-line"></i>
+            <span>Dashboard</span>
+          </a>
+          <a href="#" class="nav-item" data-section="profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+          </a>
+          <a href="#" class="nav-item" data-section="projects">
+            <i class="fas fa-briefcase"></i>
+            <span>Projects</span>
+          </a>
+          <a href="#" class="nav-item" data-section="skills">
+            <i class="fas fa-code"></i>
+            <span>Skills</span>
+          </a>
+          <a href="#" class="nav-item" data-section="messages">
+            <i class="fas fa-envelope"></i>
+            <span>Messages</span>
+          </a>
+          <a href="#" class="nav-item" data-section="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button id="logoutBtn" class="btn-logout">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Admin Main Content -->
+      <main class="admin-main">
+        <!-- Top Bar -->
+        <div class="admin-topbar">
+          <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="topbar-right">
+            <button id="themeToggle" class="theme-toggle">
+              <i class="fas fa-moon"></i>
+            </button>
+            <div class="user-profile">
+              <img id="adminAvatar" src="" alt="Admin" />
+              <div class="user-info">
+                <p id="adminName">Admin</p>
+                <span id="adminEmail">admin@email.com</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Content Sections -->
+        <div class="admin-content">
+          <!-- Dashboard Section -->
+          <section id="dashboard" class="admin-section active">
+            <div class="section-header">
+              <h2>Dashboard</h2>
+              <a href="index-new.html" target="_blank" class="btn btn-secondary"
+                >View Portfolio</a
+              >
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="dashboard-card">
+                <div class="card-icon">
+                  <i class="fas fa-eye"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Portfolio Views</h4>
+                  <p class="card-value" id="viewCount">0</p>
+                </div>
+              </div>
+
+              <div class="dashboard-card">
+                <div class="card-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Messages</h4>
+                  <p class="card-value" id="messageCount">0</p>
+                </div>
+              </div>
+
+              <div class="dashboard-card">
+                <div class="card-icon">
+                  <i class="fas fa-code"></i>
+                </div>
+                <div class="card-content">
+                  <h4>Projects</h4>
+                  <p class="card-value" id="projectCount">0</p>
+                </div>
+              </div>
+
+              <div class="dashboard-card">
+                <div class="card-icon">
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="card-content">
+                  <h4>GitHub Stars</h4>
+                  <p class="card-value" id="starsCount">0</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Profile Section -->
+          <section id="profile" class="admin-section">
+            <div class="section-header">
+              <h2>Profile Management</h2>
+            </div>
+
+            <form id="profileForm" class="admin-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    id="profileName"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Title</label>
+                  <input
+                    type="text"
+                    id="profileTitle"
+                    placeholder="Your Title"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Bio</label>
+                <textarea
+                  id="profileBio"
+                  placeholder="Short bio"
+                  rows="3"
+                ></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Profile Image URL</label>
+                  <input type="url" id="profileImage" placeholder="Image URL" />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>GitHub Username</label>
+                  <input
+                    type="text"
+                    id="profileGithub"
+                    placeholder="username"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    id="profileEmail"
+                    placeholder="email@example.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>LinkedIn URL</label>
+                  <input
+                    type="url"
+                    id="profileLinkedin"
+                    placeholder="https://linkedin.com/in/..."
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Twitter URL</label>
+                  <input
+                    type="url"
+                    id="profileTwitter"
+                    placeholder="https://twitter.com/..."
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Resume Download Link</label>
+                <input
+                  type="url"
+                  id="profileResume"
+                  placeholder="https://..."
+                />
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  Save Changes
+                </button>
+                <button type="reset" class="btn btn-secondary">Reset</button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Projects Section -->
+          <section id="projects" class="admin-section">
+            <div class="section-header">
+              <h2>Projects Management</h2>
+              <button id="addProjectBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Project
+              </button>
+            </div>
+
+            <!-- Project Form (Initially Hidden) -->
+            <form id="projectForm" class="admin-form" style="display: none">
+              <h3 id="projectFormTitle">Add New Project</h3>
+
+              <div class="form-group">
+                <label>Project Title</label>
+                <input
+                  type="text"
+                  id="projectTitle"
+                  placeholder="Project name"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  id="projectDescription"
+                  placeholder="Project description"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Image URL</label>
+                  <input type="url" id="projectImage" placeholder="Image URL" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Technologies (comma-separated)</label>
+                <input
+                  type="text"
+                  id="projectTechs"
+                  placeholder="React, Node.js, MongoDB"
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>GitHub Link</label>
+                  <input
+                    type="url"
+                    id="projectGithub"
+                    placeholder="https://github.com/..."
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Live Demo Link</label>
+                  <input
+                    type="url"
+                    id="projectDemo"
+                    placeholder="https://..."
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="projectFeatured" />
+                  <span>Mark as Featured</span>
+                </label>
+              </div>
+
+              <div class="form-actions">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  id="submitProjectBtn"
+                >
+                  Add Project
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="cancelProjectBtn"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+
+            <!-- Projects Table -->
+            <div class="table-responsive">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Technologies</th>
+                    <th>Featured</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="projectsTableBody">
+                  <tr>
+                    <td colspan="4" class="text-center">No projects yet</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Skills Section -->
+          <section id="skills" class="admin-section">
+            <div class="section-header">
+              <h2>Skills Management</h2>
+              <button id="addSkillBtn" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Skill
+              </button>
+            </div>
+
+            <!-- Skill Form (Initially Hidden) -->
+            <form id="skillForm" class="admin-form" style="display: none">
+              <h3>Add New Skill</h3>
+
+              <div class="form-group">
+                <label>Skill Name</label>
+                <input
+                  type="text"
+                  id="skillName"
+                  placeholder="e.g., React, Python"
+                  required
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Category</label>
+                  <select id="skillCategory" required>
+                    <option value="">Select Category</option>
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="mobile">Mobile</option>
+                    <option value="tools">Tools</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Icon (FontAwesome class)</label>
+                  <input
+                    type="text"
+                    id="skillIcon"
+                    placeholder="e.g., fab fa-react"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  id="submitSkillBtn"
+                >
+                  Add Skill
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  id="cancelSkillBtn"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+
+            <!-- Skills Grid -->
+            <div id="skillsGrid" class="skills-admin-grid">
+              <!-- Skills will be populated here -->
+            </div>
+          </section>
+
+          <!-- Messages Section -->
+          <section id="messages" class="admin-section">
+            <div class="section-header">
+              <h2>Messages</h2>
+              <button id="clearMessagesBtn" class="btn btn-secondary">
+                <i class="fas fa-trash"></i> Clear All
+              </button>
+            </div>
+
+            <div class="messages-container">
+              <div id="messagesList" class="messages-list">
+                <div class="empty-state">
+                  <i class="fas fa-inbox"></i>
+                  <p>No messages yet</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Settings Section -->
+          <section id="settings" class="admin-section">
+            <div class="section-header">
+              <h2>Settings</h2>
+            </div>
+
+            <div class="settings-card">
+              <h3>About Section</h3>
+              <form id="settingsForm" class="admin-form">
+                <div class="form-group">
+                  <label>About Text</label>
+                  <textarea
+                    id="settingsAbout"
+                    placeholder="About section content"
+                    rows="5"
+                  ></textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Years of Experience</label>
+                    <input
+                      type="number"
+                      id="settingsExperience"
+                      placeholder="5"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label>Interests (comma-separated)</label>
+                    <input
+                      type="text"
+                      id="settingsInterests"
+                      placeholder="AI, Web Dev, Cloud"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">
+                    Save Settings
+                  </button>
+                </div>
+              </form>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Modal for Editing/Deleting -->
+    <div id="modalOverlay" class="modal-overlay">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 id="modalTitle">Confirm Action</h3>
+          <button class="modal-close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+        <div class="modal-footer">
+          <button id="modalCancel" class="btn btn-secondary">Cancel</button>
+          <button id="modalConfirm" class="btn btn-primary">Confirm</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Firebase Compat (for global firebase object) -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script>
+      // Initialize Firebase as soon as scripts are loaded
+      if (typeof initializeFirebase === "function") {
+        initializeFirebase();
+      }
+    </script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+  </body>
+</html>

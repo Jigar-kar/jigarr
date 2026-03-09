@@ -1,0 +1,68 @@
+{
+  "personal": {
+    "name": "Kar Jigar",
+    "title": "MCA Student & Full Stack Developer",
+    "email": "karjigar56@gmail.com",
+    "phone": ""
+  },
+  "social": {
+    "github": "https://github.com/Jigar-kar",
+    "linkedin": "https://linkedin.com",
+    "twitter": "",
+    "portfolio": ""
+  },
+  "education": [
+    {
+      "degree": "Master of Computer Applications (MCA)",
+      "institution": "Noble University",
+      "year": "Pursuing"
+    },
+    {
+      "degree": "Bachelor of Computer Applications (BCA)",
+      "institution": "MKBU",
+      "year": "Completed"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming Languages",
+      "items": ["Python", "Java", "C++", "C"]
+    },
+    {
+      "category": "Mobile Development",
+      "items": ["Flutter", "Dart"]
+    },
+    {
+      "category": "Web Development",
+      "items": ["JavaScript", "HTML", "CSS"]
+    },
+    {
+      "category": "Enterprise",
+      "items": [".NET"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "College ERP",
+      "description": "Enterprise Resource Planning system for college management",
+      "technologies": ["Java", "Database", "UI/UX"],
+      "year": 2024,
+      "github": ""
+    },
+    {
+      "name": "Movement",
+      "description": "Mobile app for motion tracking and activity monitoring",
+      "technologies": ["Flutter", "Dart", "Mobile"],
+      "year": 2024,
+      "github": ""
+    },
+    {
+      "name": "Fone-Track",
+      "description": "Location tracking and device management application",
+      "technologies": ["Flutter", "Real-time", "GPS"],
+      "year": 2024,
+      "github": ""
+    }
+  ],
+  "about": "I am an MCA student at Noble University with a BCA degree from MKBU. I'm passionate about developing innovative software solutions using modern technologies including full-stack development, mobile applications, and enterprise systems."
+}
