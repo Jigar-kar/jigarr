@@ -136,10 +136,17 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero" role="banner">
-      <div class="hero-container">
+    <section id="home" class="hero" role="banner" data-parallax-section>
+      <div class="hero-parallax-layer hero-bg-layer" data-parallax-speed="0.2"></div>
+      <div class="hero-parallax-layer hero-shapes" data-parallax-speed="0.45" aria-hidden="true">
+        <span class="shape shape-1"></span>
+        <span class="shape shape-2"></span>
+        <span class="shape shape-3"></span>
+      </div>
+      <div id="heroParticles" class="hero-particles" aria-hidden="true"></div>
+      <div class="hero-container" data-parallax-speed="1">
         <div class="hero-content" data-aos="fade-up">
-          <div class="profile-image-container">
+          <div class="profile-image-container" data-parallax-mouse="18">
             <img
               id="heroImage"
               src="https://avatars.githubusercontent.com/u/Jigar-kar?v=4"
@@ -151,7 +158,7 @@
           </div>
           <h1 id="heroName" class="hero-title">Kar Jigar</h1>
           <p id="heroTitle" class="hero-subtitle">
-            Full Stack Developer & MCA Student
+            <span id="typingText" aria-live="polite"></span><span class="typing-cursor" aria-hidden="true">|</span>
           </p>
           <p id="heroBio" class="hero-description">
             Building innovative solutions with Flutter, React, and Node.js
@@ -257,7 +264,7 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="experience-section">
+    <section id="experience" data-parallax-section class="experience-section">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Experience & Journey</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
@@ -322,7 +329,7 @@
     </section>
 
     <!-- GitHub Stats Section -->
-    <section id="github" class="github-section">
+    <section id="github" data-parallax-section class="github-section">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">
           GitHub Activity & Stats
@@ -410,7 +417,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="projects-section">
+    <section id="projects" data-parallax-section class="projects-section">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Featured Projects</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
@@ -448,7 +455,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills-section">
+    <section id="skills" data-parallax-section class="skills-section">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Skills & Technologies</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
@@ -465,7 +472,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
+    <section id="testimonials" data-parallax-section class="testimonials-section">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">
           Testimonials & Feedback
@@ -751,7 +758,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact-section">
+    <section id="contact" data-parallax-section class="contact-section">
       <div class="container">
         <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
         <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
