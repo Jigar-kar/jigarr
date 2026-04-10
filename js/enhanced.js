@@ -43,7 +43,7 @@ function initializeTheme() {
   const htmlElement = document.documentElement;
   
   // Check localStorage for saved theme
-  const savedTheme = localStorage.getItem('theme') || 'light';
+  const savedTheme = localStorage.getItem('theme') || 'dark';
   htmlElement.setAttribute('data-theme', savedTheme);
   updateThemeIcon(savedTheme);
 
@@ -114,6 +114,212 @@ function setupSmoothScroll() {
       }
     });
   });
+}
+
+// ===========================
+// PARALLAX + PREMIUM MOTION
+// ===========================
+
+function setupParallaxEffects() {
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  const heroMouseTarget = document.querySelector('.parallax-mouse');
+  const parallaxSections = document.querySelectorAll('.parallax-section');
+
+  const updateParallax = () => {
+    const scrollY = window.scrollY;
+    parallaxLayers.forEach((layer) => {
+      const speed = parseFloat(layer.dataset.parallaxSpeed || '0.1');
+      layer.style.transform = `translate3d(0, ${scrollY * speed}px, 0)`;
+    });
+
+    parallaxSections.forEach((section) => {
+      const speed = parseFloat(section.dataset.parallaxSpeed || '0.08');
+      const offset = (scrollY - section.offsetTop) * speed;
+      section.style.backgroundPosition = `center ${offset}px`;
+    });
+  };
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateParallax();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  if (heroMouseTarget) {
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 18;
+      const y = (e.clientY / window.innerHeight - 0.5) * 18;
+      heroMouseTarget.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mouseleave', () => {
+      heroMouseTarget.style.transform = 'translate3d(0,0,0)';
+    });
+  }
+
+  updateParallax();
+}
+
+function setupScrollReveal() {
+  const revealElements = document.querySelectorAll(
+    '.section-title, .section-subtitle, .stat-item, .timeline-item, .project-card, .skill-card, .testimonial-card, .blog-card, .contact-item, .certification-card',
+  );
+
+  revealElements.forEach((element, index) => {
+    element.classList.add('reveal');
+    element.style.setProperty('--stagger-order', index % 6);
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2, rootMargin: '0px 0px -60px 0px' },
+  );
+
+  revealElements.forEach((element) => observer.observe(element));
+}
+
+function setupNavbarEffects() {
+  const navbar = document.querySelector('.navbar');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  const updateActiveLink = () => {
+    const scrollPosition = window.scrollY + 140;
+    sections.forEach((section) => {
+      if (
+        scrollPosition >= section.offsetTop &&
+        scrollPosition < section.offsetTop + section.offsetHeight
+      ) {
+        const targetId = section.getAttribute('id');
+        navLinks.forEach((link) => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${targetId}`);
+        });
+      }
+    });
+
+    if (navbar) {
+      navbar.classList.toggle('scrolled', window.scrollY > 24);
+    }
+  };
+
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+  updateActiveLink();
+}
+
+function setupTypingEffect() {
+  const typingElement = document.getElementById('typingText');
+  if (!typingElement) return;
+
+  const phrases = ['Front-end Developer', 'UI Designer', 'Full Stack Engineer'];
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const type = () => {
+    const currentPhrase = phrases[phraseIndex];
+    if (isDeleting) {
+      charIndex -= 1;
+    } else {
+      charIndex += 1;
+    }
+
+    typingElement.textContent = currentPhrase.slice(0, charIndex);
+
+    let delay = isDeleting ? 60 : 100;
+
+    if (!isDeleting && charIndex === currentPhrase.length) {
+      delay = 1400;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      delay = 320;
+    }
+
+    setTimeout(type, delay);
+  };
+
+  type();
+}
+
+function setupHeroParticles() {
+  const particleContainer = document.getElementById('heroParticles');
+  if (!particleContainer) return;
+
+  const totalParticles = 24;
+  for (let i = 0; i < totalParticles; i += 1) {
+    const particle = document.createElement('span');
+    particle.className = 'particle';
+    particle.style.left = `${Math.random() * 100}%`;
+    particle.style.bottom = `${Math.random() * 100}%`;
+    particle.style.animationDuration = `${8 + Math.random() * 12}s`;
+    particle.style.animationDelay = `${Math.random() * 5}s`;
+    particleContainer.appendChild(particle);
+  }
+}
+
+function setupButtonRipple() {
+  document.querySelectorAll('.btn').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const ripple = document.createElement('span');
+      const rect = button.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.className = 'ripple';
+      ripple.style.width = `${size}px`;
+      ripple.style.height = `${size}px`;
+      ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+      button.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 650);
+    });
+  });
+}
+
+function setupProjectTilt() {
+  const applyTilt = (card, mouseX, mouseY) => {
+    const rect = card.getBoundingClientRect();
+    const rotateX = ((mouseY - rect.top) / rect.height - 0.5) * -10;
+    const rotateY = ((mouseX - rect.left) / rect.width - 0.5) * 10;
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  };
+
+  document.querySelectorAll('.project-card').forEach((card) => {
+    card.addEventListener('mousemove', (e) => applyTilt(card, e.clientX, e.clientY));
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+    });
+  });
+}
+
+function animateSkillBarsOnScroll() {
+  const bars = document.querySelectorAll('.proficiency-bar');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const level = entry.target.style.getPropertyValue('--proficiency') || '80%';
+          entry.target.style.width = level;
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
+
+  bars.forEach((bar) => observer.observe(bar));
 }
 
 // ===========================
@@ -313,7 +519,10 @@ async function loadPortfolioContent() {
         document.getElementById('heroName').textContent = profile.name;
       }
       if (profile.title) {
-        document.getElementById('heroTitle').textContent = profile.title;
+        const typingPrefix = document.querySelector('.typing-prefix');
+        if (typingPrefix) {
+          typingPrefix.textContent = profile.title;
+        }
       }
       if (profile.bio) {
         document.getElementById('heroBio').textContent = profile.bio;
@@ -428,6 +637,8 @@ function renderProjects(projectDocs) {
   } catch (e) {
     console.warn('AOS refresh failed');
   }
+  setupProjectTilt();
+  setupScrollReveal();
 }
 
 // ===========================
@@ -474,6 +685,8 @@ function renderSkills(skillDocs) {
   } catch (e) {
     console.warn('AOS refresh failed');
   }
+  animateSkillBarsOnScroll();
+  setupScrollReveal();
 }
 
 // ===========================
@@ -616,10 +829,16 @@ function initializePortfolio() {
   setupLazyLoading();
   setupKeyboardNavigation();
   setupPerformanceOptimizations();
+  setupParallaxEffects();
+  setupNavbarEffects();
+  setupTypingEffect();
+  setupHeroParticles();
+  setupButtonRipple();
 
   // Animations
   initializeAOS();
   animateStatCounters();
+  setupScrollReveal();
 
   // Load content
   loadPortfolioContent();
